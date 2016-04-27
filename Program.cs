@@ -66,6 +66,20 @@ namespace t2tIcon2PNG
          do
          {
 
+            // Show help?
+            if (args.Length == 0)
+            {
+               ShowHelp();
+               break;
+            }
+
+            // Show licence?
+            if (args[0] == "--licence")
+            {
+               ShowLicence();
+               break;
+            }
+
             // Check number of arguaments
             if (args.Length < 2)
             {
@@ -160,5 +174,66 @@ namespace t2tIcon2PNG
 
          Environment.Exit((int)eExitCode);
       }
+
+      private static void ShowLicence()
+      {
+         Console.WriteLine(@"
+t2tIcon2PNG - Extract Icon to PNG
+=============================================================================
+MIT License
+
+Copyright (c) 2016 Mark Young
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the 'Software'), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+=============================================================================
+Makes use of IconTools.cs from http://www.brad-smith.info/blog/archives/763
+Thanks!");
+      }
+
+      private static void ShowHelp()
+      {
+         Console.WriteLine(@"
+t2tIcon2PNG - Extract Icon to PNG
+=============================================================================
+A tool to extract the icon associated with a file type from Windows and save
+as a 32x32 pixel PNG image.
+
+Copyright (c) 2016 Mark Young - released under the MIT license.
+=============================================================================
+Usage:
+         t2tIcon2PNG.exe [filename] [export]
+            - or -
+         t2tIcon2PNG.exe --license
+   
+   [filename]  Specifies the path to a file of type that the icon should be
+               converted
+   [export]    Specified a directory where the converted PNG should be saved
+   --licence   Displays license information (must be ony parameter)
+
+Example:
+         t2tIcon2PNG.exe C:\Users\textfile.txt C:\Temp
+         
+         This would create a PNG of the text file icon associated on this
+         system in the C:\Temp directory
+
+");
+      }
+
    }
 }
